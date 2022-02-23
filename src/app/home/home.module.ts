@@ -6,6 +6,10 @@ import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
 
+import { KeyboardComponent } from '../keyboard/keyboard.component';
+import { GuessesComponent } from '../guesses/guesses.component';
+import { GuessComponent } from '../guess/guess.component';
+
 
 @NgModule({
   imports: [
@@ -14,6 +18,11 @@ import { HomePageRoutingModule } from './home-routing.module';
     IonicModule,
     HomePageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+    GuessComponent,
+    GuessesComponent,
+    KeyboardComponent
+  ],
 })
 export class HomePageModule {}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GlobalService } from '../services/global.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +8,35 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(
+    private globalService: GlobalService
+  ) {}
 
-}
+  ngOnInit() {
+    this.globalService.setHighlight();
+  }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  }

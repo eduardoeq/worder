@@ -1,0 +1,38 @@
+<ion-row class="keyboard">
+  <ion-col>
+    <div class="line">
+      <button
+        class="key"
+        *ngFor="let key of stSetOfKeys"
+        (click)="pressKey(key)"
+      >
+        {{key}}
+      </button>
+    </div>
+    <div class="line">
+      <button
+        class="key"
+        [ngClass]="key === 'backspace' ? 'backspace' : '' "
+        *ngFor="let key of ndSetOfKeys" 
+        (click)="pressKey(key)"
+      >
+        <ng-container *ngIf="key != 'backspace'">
+          {{key}}
+        </ng-container>
+        <ng-container *ngIf="key == 'backspace'">
+          <ion-icon name="backspace" style="margin-top:1vh"></ion-icon>
+        </ng-container>
+      </button>
+    </div>
+    <div class="line" style="margin-left: 2vh">
+      <button 
+        class="key"
+        [ngClass]="key === 'ENTER' ? 'enter' : '' "
+        *ngFor="let key of rdSetOfKeys" 
+        (click)="pressKey(key)"
+      >
+        {{key}}
+      </button>
+    </div>
+  </ion-col>
+</ion-row>

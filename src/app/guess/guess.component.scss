@@ -1,0 +1,22 @@
+.box {
+    border: 1px solid lightgrey;
+    width: 6.5vh;
+    height: 6.5vh;
+    margin:0.6vh;
+    border-radius: 1vh;
+    font-size: 4vh;
+    text-align: center;
+    line-height: 6.4vh;
+    color: white;
+}
+
+.selected {
+    border: 4px solid #0083ce;
+}
+
+.inactive {
+    background-color: rgb(50, 50, 50);
+    border: none;
+
+
+}
