@@ -8,6 +8,8 @@ export class GlobalService {
 
   constructor() { }
 
+  state = 'playing';
+
   activeGuess: number = 0;
   activeLetter: number = 0;
 
@@ -29,7 +31,7 @@ export class GlobalService {
       element.classList.remove('inactive');
     }
 
-    if (this.activeLetter < 5) {
+    if (this.activeLetter < 5 && this.state === 'playing') {
       let element = document
         .getElementsByClassName("line")[this.activeGuess]
         .getElementsByClassName("box")[this.activeLetter];
@@ -37,11 +39,13 @@ export class GlobalService {
       element.classList.add('selected');
     }
 
-    let lines = document.getElementsByClassName("line");
-    for (var i = 0; i < lines.length; i++) {
-      if (i > this.activeGuess) {
-        for (let element of lines[i].getElementsByClassName("box")) {
-          element.classList.add('inactive');
+    if (this.state === 'playing') {
+      let lines = document.getElementsByClassName("line");
+      for (var i = 0; i < lines.length; i++) {
+        if (i > this.activeGuess) {
+          for (let element of lines[i].getElementsByClassName("box")) {
+            element.classList.add('inactive');
+          }
         }
       }
     }
@@ -173,12 +177,24 @@ export class GlobalService {
   
         this.activeLetter = 0;
         this.activeGuess += 1;
+
+        if (guess !== correctWord && this.activeGuess == 5) {
+          this.state = 'lost';
+        }
   
         this.setHighlight();
         this.highlightKeyboard();
+
+        if (guess == correctWord) {
+          setTimeout(() => {
+            this.state = 'won';
+            alert('you win');
+            // show modal
+          }, 500); 
+        }
       }
     } else {
-      alert('bla')
+      alert('Word not in list - fix this phrase')
     }
   }
 
