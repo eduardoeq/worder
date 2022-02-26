@@ -14,8 +14,14 @@
     </ion-row>
     <span class="spacing"></span>
     <ion-row>
+      <ion-label class="emojis" *ngFor="let line of getEmojis()">
+        {{line}} <br>
+      </ion-label><br>
+    </ion-row>
+    <span class="spacing"></span>
+    <ion-row>
       <ion-col>
-        <ion-button [disabled]="!isShareButtonEnabled()" class="share-button">
+        <ion-button (click)="share()" [disabled]="!isShareButtonEnabled()" class="share-button">
           Share <ion-icon name="share-social-sharp"></ion-icon>
         </ion-button>
       </ion-col>

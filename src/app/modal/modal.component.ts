@@ -49,5 +49,13 @@ export class ModalComponent implements OnInit {
     let state = this.globalService.getState();
     return (state === 'won' || state === 'lost') ? true : false;
   }
+
+  getEmojis() {
+    return this.globalService.getSharedEmojis();
+  }
+
+  share() {
+    this.globalService.copySharedEmojis();
+  }
   
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../services/global.service';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,6 @@ export class HomePage {
 
   ngOnInit() {
     this.globalService.setHighlight();
-    console.log(this.globalService.getWordOfTheDay());
   }
 
   showModal() {
@@ -24,5 +24,4 @@ export class HomePage {
   isShowModalEnabled() {
     return this.globalService.getShowShareModal();
   }
-
 }
