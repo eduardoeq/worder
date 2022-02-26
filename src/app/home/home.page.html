@@ -10,12 +10,12 @@
       W o r d e r
     </ion-title>
 
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
       <ion-icon class="header-icon" name="stats-chart-sharp"></ion-icon>
-    </ion-buttons>
+    </ion-buttons> -->
 
-    <ion-buttons slot="end">
-      <ion-icon class="header-icon" name="settings-sharp"></ion-icon>
+    <ion-buttons (click)="showModal()" slot="end">
+      <ion-icon class="header-icon" name="share-social-sharp"></ion-icon>
     </ion-buttons>
 
   </ion-toolbar>
@@ -24,15 +24,14 @@
 
 <ion-content [fullscreen]="true">
 
+  <app-modal [hidden]="!isShowModalEnabled()"></app-modal>
+
   <div class="spacing"></div>
 
   <app-guesses active="0"></app-guesses>
 
-  
-
   <div class="spacing"></div>
   
   <app-keyboard></app-keyboard>
-
 
 </ion-content>

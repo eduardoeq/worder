@@ -14,29 +14,15 @@ export class HomePage {
 
   ngOnInit() {
     this.globalService.setHighlight();
+    console.log(this.globalService.getWordOfTheDay());
   }
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  showModal() {
+    this.globalService.showShareModal();
   }
+
+  isShowModalEnabled() {
+    return this.globalService.getShowShareModal();
+  }
+
+}

@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { KeyboardComponent } from '../keyboard/keyboard.component';
 import { GuessesComponent } from '../guesses/guesses.component';
 import { GuessComponent } from '../guess/guess.component';
+import { ModalComponent } from '../modal/modal.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { GuessComponent } from '../guess/guess.component';
     HomePage,
     GuessComponent,
     GuessesComponent,
-    KeyboardComponent
+    KeyboardComponent,
+    ModalComponent
   ],
 })
 export class HomePageModule {}

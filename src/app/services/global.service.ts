@@ -21,6 +21,8 @@ export class GlobalService {
     incorrect : []
   };
 
+  shareModalEnabled = false;
+  
   setHighlight() {
 
     let elements = document
@@ -180,6 +182,7 @@ export class GlobalService {
 
         if (guess !== correctWord && this.activeGuess == 5) {
           this.state = 'lost';
+          this.showShareModal();
         }
   
         this.setHighlight();
@@ -188,7 +191,7 @@ export class GlobalService {
         if (guess == correctWord) {
           setTimeout(() => {
             this.state = 'won';
-            alert('you win');
+            this.showShareModal();
             // show modal
           }, 500); 
         }
@@ -202,6 +205,22 @@ export class GlobalService {
     const date = new Date();
     const position = (date.getFullYear() * date.getDate() * (date.getMonth() + 1)) % this.words.length;
     return this.words[position];
+  }
+
+  getShowShareModal() {
+    return this.shareModalEnabled;
+  }
+
+  showShareModal() {
+    this.shareModalEnabled = true;
+  }
+
+  closeShareModal() {
+    this.shareModalEnabled = false;
+  }
+
+  getState() {
+    return this.state;
   }
 
   words = [
