@@ -10,17 +10,13 @@ export class StorageService {
     private storage: Storage
   ) { }
 
-  async ngOnInit() {
+  async store(key, value) {
     await this.storage.create();
-  }
-
-  store(key, value) {
     this.storage.set(key, value);
   }
 
-  retrieve(key) {
-    this.storage.get(key).then( data => {
-      return data;
-    });
+  async retrieve(key) {
+    await this.storage.create();
+    return this.storage.get(key);
   }
 }

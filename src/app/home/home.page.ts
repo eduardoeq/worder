@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { GlobalService } from '../services/global.service';
 import { Storage } from '@ionic/storage-angular';
+import { StorageService } from '../services/storage.service';
+import { WordsService } from '../services/words.service';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +12,49 @@ import { Storage } from '@ionic/storage-angular';
 export class HomePage {
 
   constructor(
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private storageService: StorageService,
+    private wordsService: WordsService
   ) {}
 
+  cacheChecked = false;
+
   ngOnInit() {
-    this.globalService.setHighlight();
+    if (!this.cacheChecked) {
+      this.checkCache();
+    }
+  }
+
+  checkCache() {
+    this.storageService.retrieve('data').then( res => {
+      let data: any = res;
+      if (data.wordOfTheDay === this.wordsService.getWordOfTheDay()) {
+        this.globalService.setPlayerGuesses(data.playerGuesses);
+
+        console.log(data);
+        let guessedWords = [...new Set(data.guessedWords)];
+
+        for (let word of guessedWords) {
+          this.globalService.setWord(word, guessedWords.indexOf(word));
+        }
+
+        this.globalService.setActiveGuess(0);
+        for (let i = 0; i < (guessedWords.length); i++) {
+          this.globalService.setActiveLetter(5);
+          this.globalService.checkGuess();
+        }
+
+        this.globalService.setGuessedWords([...new Set(data.guessedWords)]);
+        this.globalService.setActiveLetter(data.activeLetter);
+        this.globalService.setActiveGuess(data.activeGuess);
+      }
+    });
+    
+    setTimeout(() => {
+      this.globalService.setHighlight();
+      this.globalService.highlightKeyboard();
+    }, 250);
+    this.cacheChecked = true;
   }
 
   showModal() {

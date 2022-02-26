@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { StorageService } from './storage.service';
 import { WordsService } from './words.service';
 
 @Injectable({
@@ -10,6 +11,7 @@ export class GlobalService {
   constructor(
     private wordsService: WordsService,
     private alertController: AlertController,
+    private storageService: StorageService
   ) { }
 
   state = 'playing';
@@ -17,7 +19,7 @@ export class GlobalService {
   activeGuess: number = 0;
   activeLetter: number = 0;
 
-  guessedWords: string[] = ["", "", "", "", "", ""];
+  guessedWords: string[] = [];
 
   sharedEmojis = []
 
@@ -95,6 +97,16 @@ export class GlobalService {
       this.activeLetter += 1;
 
       this.setHighlight();
+    }
+  }
+
+  setWord(word, line) {
+    for (var i = 0; i<word.length; i++) {
+      let element = document
+      .getElementsByClassName("line")[line]
+      .getElementsByClassName("box")[i];
+
+      element.innerHTML = word[i].toUpperCase();
     }
   }
 
@@ -203,10 +215,36 @@ export class GlobalService {
           this.showShareModal();
         }
         this.sharedEmojis.push(emojis);
+        
+        const toStore = {
+          wordOfTheDay: correctWord,
+          activeGuess: this.activeGuess,
+          activeLetter: this.activeLetter,
+          guessedWords: this.guessedWords,
+          playerGuesses: this.playerGuesses
+        }
+
+        this.storageService.store('data', toStore);
       }
     } else {
       this.presentAlert('Word not present in Word List.');
     }
+  }
+
+  setActiveGuess(x) {
+    this.activeGuess = x;
+  }
+
+  setActiveLetter(x) {
+    this.activeLetter = x;
+  }
+
+  setGuessedWords(x) {
+    this.guessedWords = x;
+  }
+
+  setPlayerGuesses(x) {
+    this.playerGuesses = x;
   }
 
   getShowShareModal() {
