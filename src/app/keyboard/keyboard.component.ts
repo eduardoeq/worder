@@ -17,18 +17,25 @@ export class KeyboardComponent {
   rdSetOfKeys = ["Z", "X", "C", "V", "B", "N", "M", "ENTER"];
 
   pressKey(letter) {
-    if (letter === 'ENTER') {
-      if (this.globalService.activeLetter === 5) {
-        this.globalService.checkGuess();
+    if (this.isKeyboardEnabled()) {
+      if (letter === 'ENTER') {
+        if (this.globalService.activeLetter === 5) {
+          this.globalService.checkGuess();
+        }
+      } else if (letter === 'backspace') {
+        this.globalService.deleteLetter();
+      } else {
+        this.globalService.setLetter(letter);
       }
-    } else if (letter === 'backspace') {
-      this.globalService.deleteLetter();
-    } else {
-      this.globalService.setLetter(letter);
     }
-    
   }
 
-
-
+  isKeyboardEnabled() {
+    let state = this.globalService.getState();
+    if (state === 'won' || state === 'lost') {
+      return false
+    } else {
+      return true
+    }
+  }
 }
