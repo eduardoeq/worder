@@ -3,6 +3,7 @@ import { GlobalService } from '../services/global.service';
 import { Storage } from '@ionic/storage-angular';
 import { StorageService } from '../services/storage.service';
 import { WordsService } from '../services/words.service';
+import { WorderData } from '../interfaces/WorderData';
 
 @Component({
   selector: 'app-home',
@@ -27,12 +28,11 @@ export class HomePage {
 
   checkCache() {
     this.storageService.retrieve('data').then( res => {
-      let data: any = res;
+      let data: WorderData = res;
       if (data.wordOfTheDay === this.wordsService.getWordOfTheDay()) {
         this.globalService.setPlayerGuesses(data.playerGuesses);
 
-        console.log(data);
-        let guessedWords = [...new Set(data.guessedWords)];
+        let guessedWords: string[] = [...new Set(data.guessedWords)];
 
         for (let word of guessedWords) {
           this.globalService.setWord(word, guessedWords.indexOf(word));

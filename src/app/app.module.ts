@@ -16,7 +16,9 @@ const config = environment.firebase;
   entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(), 
+    IonicModule.forRoot(
+      {mode: 'ios'}
+    ),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(config),

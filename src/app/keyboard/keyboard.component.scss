@@ -2,8 +2,10 @@
     width: 100%;
 }
 .key {
-    width: 4.5vh;
-    height: 4.5vh;
+    color: white;
+    width: 4vh;
+    max-width: 8vw;
+    height: 5.5vh;
     margin:0.3vh;
     background-color: grey;
     border-radius: 0.25vh;
@@ -13,11 +15,11 @@
 }
 
 .backspace {
-    margin-left: 4.5vh;
+    margin-left: 4vh;
 }
 
 .enter {
-    margin-left: 8vh;
-    width: 9vh;
+    margin-left: 7.5vh;
+    width: 8vh;
     font-size: 2vh;
 }

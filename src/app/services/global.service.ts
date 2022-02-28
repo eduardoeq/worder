@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Guesses } from '../interfaces/Guesses';
+import { Letter } from '../interfaces/Letter';
 import { StorageService } from './storage.service';
 import { WordsService } from './words.service';
 
@@ -21,15 +23,15 @@ export class GlobalService {
 
   guessedWords: string[] = [];
 
-  sharedEmojis = []
+  sharedEmojis: string[] = []
 
-  playerGuesses = {
+  playerGuesses: Guesses = {
     correct: [],
     contains: [],
     incorrect : []
   };
 
-  shareModalEnabled = false;
+  shareModalEnabled: boolean = false;
   
   setHighlight() {
 
@@ -86,7 +88,7 @@ export class GlobalService {
     }
   }
 
-  setLetter(letter) {
+  setLetter(letter: string) {
     if (this.activeLetter < 5) {
       let element = document
         .getElementsByClassName("line")[this.activeGuess]
@@ -100,7 +102,7 @@ export class GlobalService {
     }
   }
 
-  setWord(word, line) {
+  setWord(word: string, line: number) {
     for (var i = 0; i<word.length; i++) {
       let element = document
       .getElementsByClassName("line")[line]
@@ -138,20 +140,20 @@ export class GlobalService {
   }
 
   checkGuess() {
-    if (this.wordsService.acceptedGuesses.filter(x => x == this.getLastGuesseWord()).length > 0) {
+    if (this.wordsService.acceptedGuesses.filter(guessedWord => guessedWord == this.getLastGuesseWord()).length > 0) {
       if (this.activeLetter === 5) {
-        let emojis = "";
+        let emojis: string = "";
         this.guessedWords.push(this.getLastGuesseWord());
     
-        let guess = this.getLastGuesseWord();
-        let correctWord = this.wordsService.getWordOfTheDay();
+        let guess: string = this.getLastGuesseWord();
+        let correctWord: string = this.wordsService.getWordOfTheDay();
   
-        let letters = new Array(correctWord.length);
-        let remainingLetters = correctWord.split("");
+        let letters: Letter[] = new Array(correctWord.length);
+        let remainingLetters: string[] = correctWord.split("");
       
         for (let i = 0; i < letters.length; i++) {
-          const guessedLetter = guess.charAt(i);
-          let result = null;
+          let guessedLetter: string = guess.charAt(i);
+          let result: number = null;
       
           if (correctWord.charAt(i) === guessedLetter) {
             result = 1;
@@ -162,11 +164,11 @@ export class GlobalService {
       
           letters[i] = {
             value: guessedLetter,
-            result,
+            result: result,
           };
         }
       
-        for (let i = 0; i < letters.length; i++) {
+        for (let i: number = 0; i < letters.length; i++) {
           if (letters[i].result !== null) {
             continue;
           }
@@ -231,20 +233,20 @@ export class GlobalService {
     }
   }
 
-  setActiveGuess(x) {
-    this.activeGuess = x;
+  setActiveGuess(activeGuess: number) {
+    this.activeGuess = activeGuess;
   }
 
-  setActiveLetter(x) {
-    this.activeLetter = x;
+  setActiveLetter(activeLetter: number) {
+    this.activeLetter = activeLetter;
   }
 
-  setGuessedWords(x) {
-    this.guessedWords = x;
+  setGuessedWords(guessedWords: string[]) {
+    this.guessedWords = guessedWords;
   }
 
-  setPlayerGuesses(x) {
-    this.playerGuesses = x;
+  setPlayerGuesses(playerGuesses: Guesses) {
+    this.playerGuesses = playerGuesses;
   }
 
   getShowShareModal() {
@@ -268,7 +270,7 @@ export class GlobalService {
   }
 
   copySharedEmojis() {
-    let string = "I've just played Worder url-vai-vir-aqui \n\n";
+    let string = "I've just played Worder https://worder.web.app/ \n\n";
     for (let line of this.sharedEmojis) {
       string += line + "\n";
     }
