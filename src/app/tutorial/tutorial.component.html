@@ -1,0 +1,55 @@
+<div>
+  <ion-grid>
+    <ion-icon (click)="closeTutorial()" class="close-button" name="close-sharp"></ion-icon>
+    <span class="spacing"></span>
+    <ion-row>
+      <ion-col>
+        <ion-label class="next-word-text">
+          How to play
+        </ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text>
+          Guess the word in six tries. Each guess must be a valid five-letter word. Hit the "Try" button to submit. After each guess, the color of the tiles will change to show how close your guess was to the word.
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <span class="spacing"></span>
+    <ion-row>
+      <ion-col>
+        <ion-label><strong>Examples:</strong></ion-label>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-card class="example-box example-selected correct">C</ion-card>
+        <ion-card class="example-box">R</ion-card>
+        <ion-card class="example-box">A</ion-card>
+        <ion-card class="example-box">T</ion-card>
+        <ion-card class="example-box">E</ion-card>
+    </ion-row>
+    <ion-label>&nbsp;&nbsp;The letter C is in the word and in the correct spot.</ion-label>
+    <span class="spacing"></span>
+
+    <ion-row>
+      <ion-card class="example-box">F</ion-card>
+      <ion-card class="example-box example-selected contains">A</ion-card>
+      <ion-card class="example-box">L</ion-card>
+      <ion-card class="example-box">L</ion-card>
+      <ion-card class="example-box">S</ion-card>
+    </ion-row>
+    <ion-label>&nbsp;&nbsp;The letter A is in the word but in the wrong spot.</ion-label>
+
+  <span class="spacing"></span>
+
+  <ion-row>
+    <ion-card class="example-box">M</ion-card>
+    <ion-card class="example-box">I</ion-card>
+    <ion-card class="example-box">N</ion-card>
+    <ion-card class="example-box example-selected incorrect">U</ion-card>
+    <ion-card class="example-box">S</ion-card>
+  </ion-row>
+  <ion-label>&nbsp;&nbsp;The letter U is not in the word in any spot.</ion-label>
+  </ion-grid>
+</div>

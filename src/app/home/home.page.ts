@@ -18,13 +18,24 @@ export class HomePage {
     private wordsService: WordsService
   ) {}
 
-  cacheChecked = false;
+  cacheChecked: boolean = false;
 
   ngOnInit() {
+
     if (!this.cacheChecked) {
       this.checkCache();
     }
+
+    this.storageService.retrieve('firstTime').then(res => {
+      let data: boolean = res;
+      if (data === null) {
+        this.globalService.showTutorialModal();
+        this.storageService.store('firstTime', false);
+      }
+    });
   }
+
+
 
   checkCache() {
     this.storageService.retrieve('data').then( res => {
@@ -61,7 +72,15 @@ export class HomePage {
     this.globalService.showShareModal();
   }
 
+  showTutorial() {
+    this.globalService.showTutorialModal();
+  }
+
   isShowModalEnabled() {
     return this.globalService.getShowShareModal();
+  }
+
+  isShowTutorialEnabled() {
+    return this.globalService.getShowTutorialModal();
   }
 }

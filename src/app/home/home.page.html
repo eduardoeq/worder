@@ -2,7 +2,7 @@
 
   <ion-toolbar>
 
-    <ion-buttons slot="start">
+    <ion-buttons (click)="showTutorial()" slot="start">
       <ion-icon class="header-icon start" name="help"></ion-icon>
     </ion-buttons>
 
@@ -25,6 +25,8 @@
 <ion-content [fullscreen]="true">
 
   <app-modal [hidden]="!isShowModalEnabled()"></app-modal>
+
+  <app-tutorial [hidden]="!isShowTutorialEnabled()"></app-tutorial>
 
   <div class="spacing"></div>
 

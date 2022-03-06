@@ -14,11 +14,11 @@ export class KeyboardComponent {
 
   stSetOfKeys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
   ndSetOfKeys = ["A", "S", "D", "F", "G", "H", "J", "K", "L", "backspace"];
-  rdSetOfKeys = ["Z", "X", "C", "V", "B", "N", "M", "ENTER"];
+  rdSetOfKeys = ["Z", "X", "C", "V", "B", "N", "M", "Try"];
 
   pressKey(letter) {
     if (this.isKeyboardEnabled()) {
-      if (letter === 'ENTER') {
+      if (letter === 'Try') {
         if (this.globalService.activeLetter === 5) {
           this.globalService.checkGuess();
         }

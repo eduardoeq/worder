@@ -10,6 +10,7 @@ import { KeyboardComponent } from '../keyboard/keyboard.component';
 import { GuessesComponent } from '../guesses/guesses.component';
 import { GuessComponent } from '../guess/guess.component';
 import { ModalComponent } from '../modal/modal.component';
+import { TutorialComponent } from '../tutorial/tutorial.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ModalComponent } from '../modal/modal.component';
     GuessComponent,
     GuessesComponent,
     KeyboardComponent,
-    ModalComponent
+    ModalComponent,
+    TutorialComponent
   ],
 })
 export class HomePageModule {}

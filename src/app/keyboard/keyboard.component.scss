@@ -11,7 +11,7 @@
     border-radius: 0.25vh;
     text-align: center;
     font-weight: bold;
-    font-size: 2.5vh;
+    font-size: min(4vw, 20px);
 }
 
 .backspace {
@@ -19,7 +19,8 @@
 }
 
 .enter {
-    margin-left: 7.5vh;
+    margin-left: max(36px, 7.5vh);
     width: 8vh;
-    font-size: 2vh;
+    min-width: 34px;
+    font-size: min(4vw, 14px);
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Guesses } from '../interfaces/Guesses';
 import { Letter } from '../interfaces/Letter';
+import { WorderData } from '../interfaces/WorderData';
 import { StorageService } from './storage.service';
 import { WordsService } from './words.service';
 
@@ -32,6 +33,7 @@ export class GlobalService {
   };
 
   shareModalEnabled: boolean = false;
+  shareTutorialEnabled: boolean = false;
   
   setHighlight() {
 
@@ -68,7 +70,7 @@ export class GlobalService {
 
     for (let i of [6,7,8]) {
       for (let key of lines[i].getElementsByClassName("key")) {
-        if (!key.innerHTML.includes("ENTER") && !key.innerHTML.includes("backspace")) {
+        if (!key.innerHTML.includes("Try") && !key.innerHTML.includes("backspace")) {
           let letter = key.innerHTML.toLowerCase().replace(" ", "")[0];
           if (this.playerGuesses.correct.includes(letter.replace(" ", "")[0])) {
             key.classList.add("correct");
@@ -218,7 +220,7 @@ export class GlobalService {
         }
         this.sharedEmojis.push(emojis);
         
-        const toStore = {
+        const toStore: WorderData = {
           wordOfTheDay: correctWord,
           activeGuess: this.activeGuess,
           activeLetter: this.activeLetter,
@@ -259,6 +261,18 @@ export class GlobalService {
 
   closeShareModal() {
     this.shareModalEnabled = false;
+  }
+
+  getShowTutorialModal() {
+    return this.shareTutorialEnabled;
+  }
+
+  showTutorialModal() {
+    this.shareTutorialEnabled = true;
+  }
+
+  closeTutorialModal() {
+    this.shareTutorialEnabled = false;
   }
 
   getState() {
