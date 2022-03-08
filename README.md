@@ -20,6 +20,6 @@ This is a [Wordle](https://www.nytimes.com/games/wordle/index.html) clone made i
     `$ ionic serve`
 
 ## How to test
-Simply run 
+1. Simply run 
 
     `$ ng test`
