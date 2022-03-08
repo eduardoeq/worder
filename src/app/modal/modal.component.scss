@@ -1,8 +1,10 @@
 div {
     position: absolute;
     display: flex;
-    width: 50vw;
-    min-width: 380px;
+    width: 40vw;
+    min-width: 340px;
+    max-width: 600px;
+    margin-top: 80px;
     // height: 50vh;
     // min-height: 500px;
     top: 40%;

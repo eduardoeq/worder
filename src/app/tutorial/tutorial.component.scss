@@ -1,18 +1,17 @@
 div {
     position: absolute;
-    display: flex;
-    width: 50vw;
-    min-width: 380px;
-    // height: 50vh;
-    // min-height: 500px;
-    top: 50%;
+    display: block;
+    width: 45vw;
+    min-width: 300px;
+    max-width: 600px;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    // margin: 0 auto;
+    margin: 160px 5px 80px 5px !important;
     background-color: rgba(38, 38, 38);
     border-radius: 20px;
     z-index: 10;
-    padding-bottom: 46px;
+    padding-bottom: 23px;
 }
 
 .next-word-text {
