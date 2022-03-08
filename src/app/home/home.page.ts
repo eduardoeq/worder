@@ -40,30 +40,32 @@ export class HomePage {
   checkCache() {
     this.storageService.retrieve('data').then( res => {
       let data: WorderData = res;
-      if (data.wordOfTheDay === this.wordsService.getWordOfTheDay()) {
-        this.globalService.setPlayerGuesses(data.playerGuesses);
-
-        let guessedWords: string[] = [...new Set(data.guessedWords)];
-
-        for (let word of guessedWords) {
-          this.globalService.setWord(word, guessedWords.indexOf(word));
+      if (data) {
+        if (data.wordOfTheDay === this.wordsService.getWordOfTheDay()) {
+          this.globalService.setPlayerGuesses(data.playerGuesses);
+  
+          let guessedWords: string[] = [...new Set(data.guessedWords)];
+  
+          for (let word of guessedWords) {
+            this.globalService.setWord(word, guessedWords.indexOf(word));
+          }
+  
+          this.globalService.setActiveGuess(0);
+          for (let i = 0; i < (guessedWords.length); i++) {
+            this.globalService.setActiveLetter(5);
+            this.globalService.checkGuess();
+          }
+  
+          this.globalService.setGuessedWords([...new Set(data.guessedWords)]);
+          this.globalService.setActiveLetter(data.activeLetter);
+          this.globalService.setActiveGuess(data.activeGuess);
         }
-
-        this.globalService.setActiveGuess(0);
-        for (let i = 0; i < (guessedWords.length); i++) {
-          this.globalService.setActiveLetter(5);
-          this.globalService.checkGuess();
-        }
-
-        this.globalService.setGuessedWords([...new Set(data.guessedWords)]);
-        this.globalService.setActiveLetter(data.activeLetter);
-        this.globalService.setActiveGuess(data.activeGuess);
       }
     });
     
     setTimeout(() => {
       this.globalService.setHighlight();
-      this.globalService.highlightKeyboard();
+      this.globalService.setKeyboardHighlight();
     }, 250);
     this.cacheChecked = true;
   }

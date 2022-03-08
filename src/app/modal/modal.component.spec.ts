@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 import { ModalComponent } from './modal.component';
 
@@ -10,7 +11,8 @@ describe('ModalComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ModalComponent ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot()],
+      providers: [Storage]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ModalComponent);
@@ -18,7 +20,7 @@ describe('ModalComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+
+
+
 });

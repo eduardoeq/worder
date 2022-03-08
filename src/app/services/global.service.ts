@@ -37,56 +37,74 @@ export class GlobalService {
   
   setHighlight() {
 
-    let elements = document
+    try {
+      let elements = document
       .getElementsByClassName("line")[this.activeGuess]
       .getElementsByClassName("box");
-    for (let element of elements) {
-      element.classList.remove('selected');
-      element.classList.remove('inactive');
+
+      for (let element of elements) {
+        element.classList.remove('selected');
+        element.classList.remove('inactive');
+      }
+    } catch {
+      console.log('Some elements we are trying to highlight are not present.')    
     }
 
-    if (this.activeLetter < 5 && this.state === 'playing') {
-      let element = document
-        .getElementsByClassName("line")[this.activeGuess]
-        .getElementsByClassName("box")[this.activeLetter];
+    try {
+      if (this.activeLetter < 5 && this.state === 'playing') {
+        let element = document
+          .getElementsByClassName("line")[this.activeGuess]
+          .getElementsByClassName("box")[this.activeLetter];
+      
+        element.classList.add('selected');
+      }
+    } catch {
+      console.log('Active element we are trying to highlight are not present.')    
+    }
     
-      element.classList.add('selected');
-    }
 
-    if (this.state === 'playing') {
-      let lines = document.getElementsByClassName("line");
-      for (var i = 0; i < lines.length; i++) {
-        if (i > this.activeGuess) {
-          for (let element of lines[i].getElementsByClassName("box")) {
-            element.classList.add('inactive');
+    try {
+      if (this.state === 'playing') {
+        let lines = document.getElementsByClassName("line");
+        for (var i = 0; i < lines.length; i++) {
+          if (i > this.activeGuess) {
+            for (let element of lines[i].getElementsByClassName("box")) {
+              element.classList.add('inactive');
+            }
           }
         }
       }
+    } catch {
+      console.log('The line we are trying to highlight is not present.')    
     }
   }
 
-  highlightKeyboard() {
-    let lines = document.getElementsByClassName("line");
+  setKeyboardHighlight() {
+    try {
+      let lines = document.getElementsByClassName("line");
 
-    for (let i of [6,7,8]) {
-      for (let key of lines[i].getElementsByClassName("key")) {
-        if (!key.innerHTML.includes("Try") && !key.innerHTML.includes("backspace")) {
-          let letter = key.innerHTML.toLowerCase().replace(" ", "")[0];
-          if (this.playerGuesses.correct.includes(letter.replace(" ", "")[0])) {
-            key.classList.add("correct");
-            key.classList.remove("contains"); 
-            key.classList.remove("incorrect");  
-          } else if (this.playerGuesses.contains.includes(letter.replace(" ", "")[0])) {
-            key.classList.remove("correct");
-            key.classList.add("contains"); 
-            key.classList.remove("incorrect");  
-          } else if (this.playerGuesses.incorrect.includes(letter.replace(" ", "")[0])) {
-            key.classList.remove("correct");
-            key.classList.remove("contains"); 
-            key.classList.add("incorrect");  
-          };
+      for (let i of [6,7,8]) {
+        for (let key of lines[i].getElementsByClassName("key")) {
+          if (!key.innerHTML.includes("Try") && !key.innerHTML.includes("backspace")) {
+            let letter = key.innerHTML.toLowerCase().replace(" ", "")[0];
+            if (this.playerGuesses.correct.includes(letter.replace(" ", "")[0])) {
+              key.classList.add("correct");
+              key.classList.remove("contains"); 
+              key.classList.remove("incorrect");  
+            } else if (this.playerGuesses.contains.includes(letter.replace(" ", "")[0])) {
+              key.classList.remove("correct");
+              key.classList.add("contains"); 
+              key.classList.remove("incorrect");  
+            } else if (this.playerGuesses.incorrect.includes(letter.replace(" ", "")[0])) {
+              key.classList.remove("correct");
+              key.classList.remove("contains"); 
+              key.classList.add("incorrect");  
+            };
+          }
         }
       }
+    } catch {
+      console.log('Missing keys to highlight.')
     }
   }
 
@@ -212,7 +230,7 @@ export class GlobalService {
         }
   
         this.setHighlight();
-        this.highlightKeyboard();
+        this.setKeyboardHighlight();
 
         if (guess == correctWord) {
           this.state = 'won';

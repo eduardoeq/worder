@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { interval, Subscription } from 'rxjs';
+import { interval, Observable, Subscription } from 'rxjs';
 import { GlobalService } from '../services/global.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class ModalComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    const source = interval(1000);
+    const source: Observable<number> = interval(1000);
     const counter = document.getElementById('counter');
     this.subscription = source.subscribe( () => {
       const actualTime = new Date(Date.now());
