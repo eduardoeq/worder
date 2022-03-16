@@ -2,6 +2,9 @@
 
 This is a [Wordle](https://www.nytimes.com/games/wordle/index.html) clone made in Ionic/Angular.
 
+## Website
+https://worder.web.app/
+
 
 ## How to run
 1. Clone this repo:
