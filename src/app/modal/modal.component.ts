@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { interval, Observable, Subscription } from 'rxjs';
 import { GlobalService } from '../services/global.service';
+import { WordsService } from '../services/words.service';
 
 @Component({
   selector: 'app-modal',
@@ -15,7 +16,8 @@ export class ModalComponent implements OnInit {
   counter; 
 
   constructor(
-    private globalService: GlobalService
+    private globalService: GlobalService,
+    private wordService: WordsService
   ) {}
 
   ngOnInit() {
@@ -48,6 +50,10 @@ export class ModalComponent implements OnInit {
   isShareButtonEnabled() {
     let state = this.globalService.getState();
     return (state === 'won' || state === 'lost') ? true : false;
+  }
+
+  getWordOfTheDay() {
+    return this.wordService.getWordOfTheDay();
   }
 
   getEmojis() {

@@ -1,30 +1,37 @@
 <div>
   <ion-grid>
+
     <ion-icon (click)="closeModal()" class="close-button" name="close-sharp"></ion-icon>
+   
     <span class="spacing"></span>
+   
     <ion-row>
       <ion-col>
         <ion-label class="next-word-text">
           Next word in
         </ion-label>
-        <ion-label id="counter" class="next-word-var">
-          
-        </ion-label>
+        <ion-label id="counter" class="next-word-var"></ion-label>
       </ion-col>
+   
     </ion-row>
-    <span class="spacing"></span>
+   
+    <ion-label class="word-of-the-day" *ngIf="isShareButtonEnabled()">{{ getWordOfTheDay() }}</ion-label><br>   
+   
     <ion-row>
       <ion-label class="emojis" *ngFor="let line of getEmojis()">
         {{line}} <br>
       </ion-label><br>
     </ion-row>
+   
     <span class="spacing"></span>
+   
     <ion-row>
       <ion-col>
         <ion-button (click)="share()" [disabled]="!isShareButtonEnabled()" class="share-button">
           Share <ion-icon name="share-social-sharp"></ion-icon>
         </ion-button>
       </ion-col>
+   
     </ion-row>
   </ion-grid>
 </div>
